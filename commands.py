@@ -83,7 +83,7 @@ def pscala(command):
 
 def h(command):
   logging.info('hi')
-  response = u'fs-slack commands:\n'
+  response = u'plusplusbot commands:\n'
   for key in sorted(REGISTRY.keys()):
     fn, help_text = REGISTRY[key]
     response += u'{0} {1}\n'.format(key, '' if not help_text else help_text)
@@ -97,6 +97,6 @@ register(u'/--', minusminus, 'thing [reason]\t\t\t\t\t\tdecrement score of thing
 # em-dash
 register(u'/\u2014', minusminus, 'thing [reason]\t\t\t\t\t\tdecrement score of thing [for reason]')
 
-register(u'/p', paste, '[scala|python] some text\t\tpaste some text [optionally set language]')
-register(u'/pscala', pscala, 'some text\t\t\t\t\tpaste some text in scala')
+#register(u'/p', paste, '[scala|python] some text\t\tpaste some text [optionally set language]')
+#register(u'/pscala', pscala, 'some text\t\t\t\t\tpaste some text in scala')
 register(u'/h', h, '\t\t\t\t\t\t\t\t\t\t\tthis help message')
