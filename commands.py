@@ -34,14 +34,21 @@ def extract_entity(text):
   return tokens
 
 
+def normalize_to(token):
+  if token.startswith('@'):
+    token = token[1:]
+
+  return token.lower()
+
 
 def score(command, delta, message, icon_emoji):
   info = extract_entity(command.text)
   if info:
-    r = entity.inc_entity(info[0], delta)
+    to = normalize_to(info[0])
+    r = entity.inc_entity(to, delta)
 
     line = message.format(
-      to=info[0] + u'\u200E',
+      to=to + u'\u200E',
       score=r.score,
       reason='' if len(info) < 2 else ' ' + info[1]
     )
