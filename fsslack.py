@@ -1,5 +1,6 @@
 import logging
 import webapp2
+import json
 from google.appengine.api import users
 
 from config_page import ConfigPage
@@ -25,10 +26,17 @@ class CommandPage(webapp2.RequestHandler):
       self.response.headers['Content-Type'] = 'text/plain; charset=utf-8'
       self.response.write(response.encode('utf-8'))
 
+class KarmaPage(webapp2.RequestHandler):
+  def get(self):
+    entities = entity.Entity.all()
+    data = {entity.key(): entity.score for entity in entities}
+    self.response.headers['Content-Type'] = 'application/json; charset=utf-8'
+    json.dump(data, self.response)
 
 application = webapp2.WSGIApplication([
   ('/', MainPage),
   ('/logout', LogoutPage),
   ('/config', ConfigPage),
   ('/slash', CommandPage),
+  ('/karma', KarmaPage),
 ], debug=True)
