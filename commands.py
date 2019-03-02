@@ -63,10 +63,10 @@ def score(command, delta, message, icon_emoji):
 
 
 def plusplus(command):
-  score(command, 1, u'{to}++ (now at {score}){reason}', ':thumbsup:')
+  score(command, 1, u'/++ {to} (now at {score}){reason}', ':thumbsup:')
 
 def minusminus(command):
-  score(command, -1, u'{to}-- (now at {score}){reason}', ':thumbsdown:')
+  score(command, -1, u'/-- {to} (now at {score}){reason}', ':thumbsdown:')
 
 def do_paste(command, content, filetype='text'):
   api.files_upload(
