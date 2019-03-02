@@ -47,11 +47,7 @@ def score(command, delta, message, icon_emoji):
     to = normalize_to(info[0])
     r = entity.inc_entity(to, delta)
 
-    line = message.format(
-      to=to + u'\u200E',
-      score=r.score,
-      reason='' if len(info) < 2 else info[1] + ' '
-    )
+    line = (command.text + u' (now at {score})').format(score=r.score)
 
     logging.info(line)
 
@@ -62,10 +58,10 @@ def score(command, delta, message, icon_emoji):
       icon_emoji=icon_emoji)
 
 def plusplus(command):
-  score(command, 1, u'/++ {to} {reason}(now at {score})', ':thumbsup:')
+  score(command, 1, ':thumbsup:')
 
 def minusminus(command):
-  score(command, -1, u'/-- {to} {reason}(now at {score})', ':thumbsdown:')
+  score(command, -1, ':thumbsdown:')
 
 def do_paste(command, content, filetype='text'):
   api.files_upload(
