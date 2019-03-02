@@ -41,7 +41,7 @@ def normalize_to(token):
   return token.lower()
 
 
-def score(command, delta, message, icon_emoji):
+def score(command, delta, icon_emoji):
   info = extract_entity(command.text)
   if info:
     to = normalize_to(info[0])
