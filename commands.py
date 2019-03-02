@@ -50,7 +50,7 @@ def score(command, delta, message, icon_emoji):
     line = message.format(
       to=to + u'\u200E',
       score=r.score,
-      reason='' if len(info) < 2 else ' ' + info[1]
+      reason='' if len(info) < 2 else info[1] + ' '
     )
 
     logging.info(line)
@@ -61,12 +61,11 @@ def score(command, delta, message, icon_emoji):
       channel='#' + command.channel_name,
       icon_emoji=icon_emoji)
 
-
 def plusplus(command):
-  score(command, 1, u'/++ {to} {reason} (now at {score})', ':thumbsup:')
+  score(command, 1, u'/++ {to} {reason}(now at {score})', ':thumbsup:')
 
 def minusminus(command):
-  score(command, -1, u'/-- {to} {reason} (now at {score})', ':thumbsdown:')
+  score(command, -1, u'/-- {to} {reason}(now at {score})', ':thumbsdown:')
 
 def do_paste(command, content, filetype='text'):
   api.files_upload(
