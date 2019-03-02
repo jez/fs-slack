@@ -47,7 +47,7 @@ def score(command, delta, message, icon_emoji):
     to = normalize_to(info[0])
     r = entity.inc_entity(to, delta)
 
-    line = (command.text + u' (now at {score})').format(score=r.score)
+    line = u'{msg} (now at {score})'.format(msg=command.text, score=r.score)
 
     logging.info(line)
 
